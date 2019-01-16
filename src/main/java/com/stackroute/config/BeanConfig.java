@@ -2,9 +2,11 @@ package com.stackroute.config;
 
 import com.stackroute.domain.Actor;
 import com.stackroute.domain.Movie;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 @ComponentScan(basePackages = "com.stackroute")
@@ -15,6 +17,7 @@ public class BeanConfig {
         return actor;
     }
     @Bean("movie")
+    @Scope(value="prototype")
     public Movie getMovieBean(){
         return new Movie(getActorBean());
     }
@@ -37,4 +40,18 @@ public class BeanConfig {
         return new Movie(getActorBean2());
     }
 
+    @Bean("actorx")
+    public Actor getActorX(){
+        Actor actor=new Actor();
+        actor.setName("Ranveer");
+        actor.setAge(34);
+        actor.setGender("male");
+        return actor;
+    }
+    @Bean("moviex")
+    public Movie getMovieX(){
+        Movie movie=new Movie();
+        movie.setActor(getActorX());
+        return movie;
+    }
 }

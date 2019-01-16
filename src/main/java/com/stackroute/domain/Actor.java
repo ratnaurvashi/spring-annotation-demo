@@ -18,7 +18,7 @@ public class Actor {
     }
 
     @Autowired
-    public Actor(@Value("${actor.name}") String name, @Value("${actor.gender}") String gender, @Value("${actor.age}") int age) {
+    public Actor(@Value("Taimur") String name, @Value("male") String gender, @Value("1") int age) {
         this.name = name;
         this.gender = gender;
         this.age = age;
